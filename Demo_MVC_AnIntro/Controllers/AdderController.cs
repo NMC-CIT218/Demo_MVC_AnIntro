@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace Demo_MVC_AnIntro.Controllers
 {
-    public class CalculatorController : Controller
+    public class AdderController : Controller
     {
-        // GET: Calculator
-        public ActionResult Index()
+        // GET: Adder
+        public string Index(int num1, int num2)
         {
-            return View();
+            return (num1 + num2).ToString();
         }
     }
 }
