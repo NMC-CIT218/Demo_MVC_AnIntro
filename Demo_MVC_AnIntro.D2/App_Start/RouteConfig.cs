@@ -21,7 +21,7 @@ namespace Demo_MVC_AnIntro.D2
 
             routes.MapRoute(
                 name: "Calculator",
-                url: "{controller}/{action}/{num1}/{num2}"
+                url: "{controller}/{action}/{operation}/{num1}/{num2}"
                 );
         }
     }

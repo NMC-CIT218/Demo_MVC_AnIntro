@@ -9,69 +9,55 @@ namespace Demo_MVC_AnIntro.D2.Controllers
 {
     public class CalculatorController : Controller
     {
-        public string Index()
+        public ActionResult Index()
         {
-            StringBuilder sb = new StringBuilder();
-            string htmlCode;
+            ViewBag.Title = "The Calculator";
+            ViewData["Title"] = "The Calculator";
 
-            sb.Append("<h1 style=\"text-align:center\">Welcome to Our Calculator</h1>");
-            sb.Append("</br>");
-            sb.Append("<p style=\"text-align:center\">");
-            sb.Append("To use the calculator, construct a URL like the example below with an operation ");
-            sb.Append("followed by two integers separated with a forward slash.</p>");
-            sb.Append("<p style=\"font-weight:bold; color:red; text-align:center\">/calculator/add/35/86</p>");
-
-            htmlCode = sb.ToString();
-
-            return htmlCode;
+            return View();
         }
 
-        public string Add(int num1, int num2)
+        public ActionResult Calculate(string operation, double num1, double num2)
         {
-            string HTMLcode;
-            string answer;
+            double result;
+            string resultMessage;
+            string operationUpper;
 
-            answer = (num1 + num2).ToString();
+            operationUpper = operation.ToUpper();
 
-            HTMLcode = HttpUtility.HtmlEncode(String.Format("The sum of {0} and {1} is {2}.", num1, num2, answer));
+            //
+            // perform calculation and build out result message
+            //
+            switch (operationUpper)
+            {
+                case ("ADD"):
+                    result = num1 + num2;
+                    resultMessage = String.Format("The sum of {0} and {1} is {2}.", num1, num2, result);
+                    break;
+                case ("SUBTRACT"):
+                    result = num1 - num2;
+                    resultMessage = String.Format("The difference of {0} and {1} is {2}.", num1, num2, result);
+                    break;
+                case ("MULTIPLY"):
+                    result = num1 * num2;
+                    resultMessage = String.Format("The product of {0} and {1} is {2}.", num1, num2, result);
+                    break;
+                case ("DIVIDE"):
+                    result = num1 / num2;
+                    resultMessage = String.Format("The quotient of {0} and {1} is {2}.", num1, num2, result.ToString("#.##"));
+                    break;
+                default:
+                    result = 0;
+                    resultMessage = String.Format("There was an error in the operation choice. \"{0}\" is not a valid operation.", operation);
+                    break;
+            }
 
-            return HTMLcode;
-        }
+            //
+            // set ViewBag properties
+            //
+            ViewBag.ResultMessage = resultMessage;
 
-        public string Subract(int num1, int num2)
-        {
-            string HTMLcode;
-            string answer;
-
-            answer = (num1 - num2).ToString();
-
-            HTMLcode = HttpUtility.HtmlEncode(String.Format("The difference of {0} and {1} is {2}.", num1, num2, answer));
-
-            return HTMLcode;
-        }
-
-        public string Multiply(int num1, int num2)
-        {
-            string HTMLcode;
-            string answer;
-
-            answer = (num1 * num2).ToString();
-
-            HTMLcode = HttpUtility.HtmlEncode(String.Format("The product of {0} and {1} is {2}.", num1, num2, answer));
-
-            return HTMLcode;
-        }
-
-        public string Divide(int num1, int num2)
-        {
-            string HTMLcode;
-            string answer;
-
-            answer = ((double)num1 / num2).ToString("#.##");
-
-            HTMLcode = HttpUtility.HtmlEncode(String.Format("The quotient of {0} divided by {1} is {2}.", num1, num2, answer));
-
-            return HTMLcode;
+            return View();
         }
     }
 }
