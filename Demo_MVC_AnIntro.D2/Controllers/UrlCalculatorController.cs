@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Demo_MVC_AnIntro.D2.Controllers
 {
-    public class CalculatorController : Controller
+    public class UrlCalculatorController : Controller
     {
         public ActionResult Index()
         {

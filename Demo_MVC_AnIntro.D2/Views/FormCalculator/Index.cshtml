@@ -1,0 +1,84 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    decimal result = 0;
+    string resultMessage = "";
+    string num1ValueText = "";
+    string num2ValueText = "";
+    
+    if (IsPost)
+    {
+        //
+        // Store the form field values
+        //
+        decimal num1 = Request["num1"].AsDecimal();
+        decimal num2 = Request["num2"].AsDecimal();
+        string operation = Request["operation"];
+
+        //
+        // Set values for form inputs
+        //
+        num1ValueText = Request["num1"];
+        num2ValueText = Request["num2"];
+        
+               
+        //
+        // perform calculation and build out result message
+        //
+        switch (operation)
+        {
+            case ("Add"):
+                result = num1 + num2;
+                resultMessage = String.Format("The sum of {0} and {1} is {2}.", num1, num2, result);
+                break;
+            case ("Subtract"):
+                result = num1 - num2;
+                resultMessage = String.Format("The difference of {0} and {1} is {2}.", num1, num2, result);
+                break;
+            case ("Multiply"):
+                result = num1 * num2;
+                resultMessage = String.Format("The product of {0} and {1} is {2}.", num1, num2, result);
+                break;
+            case ("Divide"):
+                result = num1 / num2;
+                resultMessage = String.Format("The quotient of {0} and {1} is {2}.", num1, num2, result.ToString("#.##"));
+                break;
+            default:
+                result = 0;
+                resultMessage = String.Format("There was an error in the operation choice. \"{0}\" is not a valid operation.", operation);
+                break;
+        }
+        
+        
+    }
+}
+
+<h1 style="text-align:center">Welcome to Our Form Calculator</h1>
+<br>
+
+<p style="text-align:center">
+    To use the calculator, complete the form and then click the desired operation button.
+</p>
+
+<form action="" method="post">
+    <p>
+        <label for="num1">First Number:</label>
+        <input type="text" name="num1" value="@num1ValueText" />
+    </p>
+    <p>
+        <label for="num2">Second Number:</label>
+        <input type="text" name="num2" value="@num2ValueText" />
+    </p>
+    <p>
+        <input type="submit" name="operation" value="Add" />
+        <input type="submit" name="operation" value="Subtract" />
+        <input type="submit" name="operation" value="Multiply" />
+        <input type="submit" name="operation" value="Divide" />
+    </p>
+</form>
+
+<p>@resultMessage</p>
+

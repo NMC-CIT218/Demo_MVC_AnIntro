@@ -111,7 +111,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CalculatorController.cs" />
+    <Compile Include="Controllers\FormCalculatorController.cs" />
+    <Compile Include="Controllers\UrlCalculatorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -155,8 +156,9 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Calculator\Index.cshtml" />
-    <Content Include="Views\Calculator\Calculate.cshtml" />
+    <Content Include="Views\UrlCalculator\Index.cshtml" />
+    <Content Include="Views\UrlCalculator\Calculate.cshtml" />
+    <Content Include="Views\FormCalculator\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

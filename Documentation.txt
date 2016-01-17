@@ -7,4 +7,7 @@ Project:        D1
 Description:    Controllers
 
 Project:        D2
-Description:    Inclu
+Description:    Views 
+				Add the Calculator controller
+				Add the Calculate Action and View
+				Add the FormCalculator controller
