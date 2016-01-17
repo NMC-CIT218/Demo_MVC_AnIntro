@@ -5,7 +5,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Demo_MVC_AnIntro.D1.Controllers
+namespace Demo_MVC_AnIntro.D2.Controllers
 {
     public class CalculatorController : Controller
     {
